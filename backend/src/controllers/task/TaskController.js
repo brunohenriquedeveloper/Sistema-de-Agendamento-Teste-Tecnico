@@ -56,3 +56,32 @@ export const getTasks = asyncHandler(async (req, res) => {
         res.status(500).json({message: "Erro ao buscar as tarefas", error: error.message})
     }
 })
+
+export const getTask = asyncHandler(async (req, res) => {
+
+    try {
+        const userId = req?.user?._id
+
+        const {id} = req.params 
+
+        if(!id) {
+            return res.status(400).json({message: "Por favor forneça um ID válido para o seu compromisso"})
+        }
+
+        const task = await TaskModel.findById(id)
+
+        if(!task) {
+            return res.status(404).json({message: "Tarefa não encontrada"})
+        }
+    
+        if(!task.user.equals(userId)) {
+            return res.status(403).json({message: "Acesso negado ao compromisso"})
+        }
+
+        return res.status(200).json(task)
+
+    } catch (error) {
+        console.error("Erro ao buscar a tarefa:", error.message)
+        res.status(500).json({message: "Erro ao buscar a tarefa", error: error.message})
+    }
+})
