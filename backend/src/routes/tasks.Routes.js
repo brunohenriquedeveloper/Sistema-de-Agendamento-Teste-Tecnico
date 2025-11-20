@@ -1,5 +1,5 @@
 import express from 'express'
-import { createTask , getTasks, getTask } from '../controllers/task/TaskController.js'
+import { createTask , getTasks, getTask, updateTask } from '../controllers/task/TaskController.js'
 import { protect } from '../middleware/authMiddleware.js'
 
 const router = express.Router()
@@ -7,5 +7,7 @@ const router = express.Router()
 router.post("/task/create", protect,  createTask)
 router.get("/tasks", protect,  getTasks)
 router.get("/task/:id", protect, getTask)
+router.put("/task/:id", protect, updateTask)
+router.delete("/task/:id", protect, deleteTask)
 
 export default router
