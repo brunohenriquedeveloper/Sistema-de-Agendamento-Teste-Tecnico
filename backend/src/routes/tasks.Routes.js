@@ -1,9 +1,10 @@
 import express from 'express'
+import { createTask , getTasks } from '../controllers/task/TaskController.js'
+import { protect } from '../middleware/authMiddleware.js'
 
 const router = express.Router()
 
-router.post("/task/create", (req, res) => {
-    res.send("Compromisso Criado")
-})
+router.post("/task/create", protect,  createTask)
+router.get("/tasks", protect,  getTasks)
 
 export default router

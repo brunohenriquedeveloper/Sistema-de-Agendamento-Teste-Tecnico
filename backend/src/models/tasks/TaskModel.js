@@ -13,9 +13,14 @@ const TaskSchema = new mongoose.Schema(
             default: "Sem Descrição"
         },
 
-        date: {
+       appointmentDate: {
             type: Date,
-            default: Date.now()
+            required: [true, "Por favor coloque a data do seu compromisso"],
+        },
+
+        appointmentTime: {
+            type: String, 
+            required: [true, "Por favor coloque a hora do seu compromisso"],
         },
 
         status: {
