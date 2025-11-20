@@ -123,3 +123,26 @@ export const updateTask = asyncHandler(async (req, res) => {
         res.status(500).json({message: "Erro ao atualizar a tarefa", error: error.message})
     }
 })
+
+export const deleteTask = asyncHandler(async (req, res) => {
+    try {
+        const userId = req?.user?._id 
+        const {id} = req.params
+
+        const task = await TaskModel.findById(id)
+
+        if(!task) {
+            return res.status(404).json({message: "Tarefa não encontrada"})
+        }
+
+        if(!task.user.equals(userId)) {
+            return res.status(403).json({message: "Acesso ao compromisso negado"})
+        }
+
+        await TaskModel.findByIdAndDelete(id)
+        
+        return res.status(200).json({message: "Tarefa deletada com sucesso"})
+    } catch (error) {
+        console.error("Erro ao deletar a tarefa:", error.message)
+        res.status(500).json({message: "Erro ao deletar a tarefa", error: error.message})}
+    })
