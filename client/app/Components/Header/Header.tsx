@@ -20,10 +20,7 @@ function Header() {
     <header className="px-6 my-4 w-full flex items-center justify-between bg-[#f9f9f9]">
       <div>
         <h1 className="text-lg font-medium">
-          <span role="img" aria-label="wave">
-            👋
-          </span>
-          {userId ? `Welcome, ${name}!` : "Welcome to Taskfyer"}
+          {userId ? `Bem-vindo, ${name}!` : "Bem-vindo, vamos agendar!"}
         </h1>
         <p className="text-sm">
           {userId ? (
@@ -35,7 +32,7 @@ function Header() {
               &nbsp;active tasks
             </>
           ) : (
-            "Please login or register to view your tasks"
+            "Por favor, faça o login ou se registre."
           )}
         </p>
       </div>
@@ -51,7 +48,7 @@ function Header() {
             }
           }}
         >
-          {userId ? "Add a new Task" : "Login / Register"}
+          {userId ? "Adicionar Tarefa" : "Login / Registrar"}
         </button>
 
         <div className="flex gap-4 items-center">
