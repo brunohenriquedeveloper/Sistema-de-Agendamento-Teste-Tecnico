@@ -1,17 +1,18 @@
 "use client";
 import { useUserContext } from "@/context/userContext";
-import React, { use } from "react";
+import React from "react";
 
 interface MainContentLayoutProps {
-    children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
-function MainContentLayout({ children }: MainContentLayoutProps) {    
-
-    const userId = useUserContext().user?.id;
-    return (
-        <main className={`${userId? 'pr-[20rem]' : ''} pb-[1.5rem] flex h-full`}>{children}</main>
-    )
+function MainContentLayout({ children }: MainContentLayoutProps) {
+  const userId = useUserContext().user._id;
+  return (
+    <main className={`${userId ? "pr-[20rem]" : ""} pb-[1.5rem] flex h-full`}>
+      {children}
+    </main>
+  );
 }
 
 export default MainContentLayout;
