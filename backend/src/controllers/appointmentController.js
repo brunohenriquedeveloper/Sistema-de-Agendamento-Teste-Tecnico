@@ -2,11 +2,11 @@ import Appointment from "../models/Appointment.js";
 
 export const createAppointment = async (req, res) => {
   try {
-    const { title, description, appointmentDate, appointmentTime, status } = req.body;
+    const { name, service, appointmentDate, appointmentTime, status } = req.body;
 
     const newAppointment = await Appointment.create({
-      title,
-      description,
+      name,
+      service,
       appointmentDate,
       appointmentTime,
       status,

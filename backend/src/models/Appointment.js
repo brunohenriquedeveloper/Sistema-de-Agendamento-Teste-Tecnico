@@ -2,17 +2,18 @@ import mongoose from "mongoose";
 
 const AppointmentSchema = new mongoose.Schema(
   {
-    title: {
+    name: {
       type: String,
-      required: [true, "Por favor, informe um título para o compromisso"],
+      required: [true, "Por favor, informe o nome do cliente"],
       trim: true,
-      minlength: [3, "O título deve ter pelo menos 3 caracteres"]
+      minlength: [3, "O nome deve ter pelo menos 3 caracteres"],
     },
 
-    description: {
+    service: {
       type: String,
-      default: "Sem descrição",
-      trim: true
+      required: [true, "Por favor, informe o serviço"],
+      trim: true,
+      minlength: [3, "O serviço deve ter pelo menos 3 caracteres"],
     },
 
     appointmentDate: {
@@ -23,21 +24,13 @@ const AppointmentSchema = new mongoose.Schema(
     appointmentTime: {
       type: String,
       required: [true, "Por favor, informe o horário do compromisso"],
-      // Ex: "14:30"
-      match: [/^\d{2}:\d{2}$/, "Horário inválido, use o formato HH:MM"]
+      match: [/^\d{2}:\d{2}$/, "Horário inválido, use o formato HH:MM"],
     },
 
     status: {
       type: String,
       enum: ["pendente", "feito", "cancelado"],
       default: "pendente",
-    },
-
-
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: false,
     },
   },
   { timestamps: true }

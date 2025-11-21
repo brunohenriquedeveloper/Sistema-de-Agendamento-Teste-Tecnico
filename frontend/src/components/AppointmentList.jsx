@@ -2,16 +2,20 @@ import React, { useEffect, useState } from "react";
 import { fetchAppointments, deleteAppointment } from "../api/api";
 import AppointmentItem from "./AppointmentItem";
 import ConfirmModal from "./ui/ConfirmModal";
+import CreateAppointment from "./CreateAppointment"; // formulário reutilizado
 import styles from "./AppointmentList.module.css";
 
-export default function AppointmentList() {
+export default function AppointmentList({ onBack }) {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // estados para modal
+  // modal de exclusão
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
+
+  // edição
+  const [editingAppointment, setEditingAppointment] = useState(null);
 
   const load = async () => {
     setLoading(true);
@@ -30,13 +34,11 @@ export default function AppointmentList() {
     load();
   }, []);
 
-  // abrir modal de confirmação
   const handleDeleteClick = (id) => {
     setSelectedId(id);
     setConfirmOpen(true);
   };
 
-  // confirmar exclusão
   const handleConfirm = async () => {
     try {
       await deleteAppointment(selectedId);
@@ -49,10 +51,20 @@ export default function AppointmentList() {
     }
   };
 
-  // cancelar exclusão
   const handleCancel = () => {
     setConfirmOpen(false);
     setSelectedId(null);
+  };
+
+  // abrir formulário de edição
+  const handleEdit = (appointment) => {
+    setEditingAppointment(appointment);
+  };
+
+  // quando edição for concluída ou cancelada
+  const handleEditedOrCanceled = () => {
+    setEditingAppointment(null);
+    load(); // recarrega a lista atualizada
   };
 
   if (loading) return <p>Carregando agendamentos...</p>;
@@ -61,18 +73,29 @@ export default function AppointmentList() {
   return (
     <div className={styles.appointmentContainer}>
       <h1>Lista de Agendamentos</h1>
-      <div className={styles.appointmentList}>
-        {list.length === 0 && <p>Nenhum agendamento encontrado</p>}
-        {list.map((a) => (
-          <AppointmentItem
-            key={a._id}
-            appointment={a}
-            onDelete={() => handleDeleteClick(a._id)}
-          />
-        ))}
-      </div>
 
-      {/* Modal de confirmação */}
+      {editingAppointment ? (
+        <CreateAppointment
+          existingAppointment={editingAppointment}
+          onCreated={handleEditedOrCanceled}
+          onCancel={handleEditedOrCanceled} // botão Cancelar volta para a lista
+        />
+      ) : (
+        <>
+          <div className={styles.appointmentList}>
+            {list.length === 0 && <p>Nenhum agendamento encontrado</p>}
+            {list.map((a) => (
+              <AppointmentItem
+                key={a._id}
+                appointment={a}
+                onDelete={() => handleDeleteClick(a._id)}
+                onEdit={() => handleEdit(a)}
+              />
+            ))}
+          </div>
+        </>
+      )}
+
       <ConfirmModal
         open={confirmOpen}
         onClose={handleCancel}

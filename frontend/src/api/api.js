@@ -26,3 +26,18 @@ export const deleteAppointment = async (id) => {
   if (!res.ok) throw new Error("Erro ao deletar agendamento");
   return res.json();
 };
+
+export const updateAppointment = async (id, payload) => {
+  const res = await fetch(`${API_BASE}/agendamentos/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ message: "Erro" }));
+    throw new Error(err.message || "Erro ao atualizar agendamento");
+  }
+
+  return res.json();
+};
