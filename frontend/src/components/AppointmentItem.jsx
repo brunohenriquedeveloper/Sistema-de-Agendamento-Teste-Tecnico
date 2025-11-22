@@ -5,9 +5,9 @@ export default function AppointmentItem({ appointment, onDelete, onEdit }) {
 
   const { _id, name, service, appointmentDate, appointmentTime, status } = appointment;
 
-  // formatar data e hora
+  // formatar data corretamente ignorando fuso horário
   const formattedDate = appointmentDate
-    ? new Date(appointmentDate).toLocaleDateString("pt-BR")
+    ? new Date(appointmentDate + "T00:00:00").toLocaleDateString("pt-BR")
     : "";
   const formattedTime = appointmentTime || "";
 

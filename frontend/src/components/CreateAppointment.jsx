@@ -16,7 +16,6 @@ export default function CreateAppointment({ onCreated, existingAppointment, onCa
   const [modalOpen, setModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
 
-  // detectar se é edição
   const isEditing = !!existingAppointment;
 
   // preencher formulário se houver edição
@@ -24,7 +23,11 @@ export default function CreateAppointment({ onCreated, existingAppointment, onCa
     if (existingAppointment) {
       setName(existingAppointment.name || "");
       setService(existingAppointment.service || "");
-      setAppointmentDate(existingAppointment.appointmentDate?.slice(0, 10) || "");
+      setAppointmentDate(
+        existingAppointment?.appointmentDate
+          ? new Date(existingAppointment.appointmentDate).toISOString().slice(0, 10)
+          : ""
+      );
       setAppointmentTime(existingAppointment.appointmentTime || "");
       setStatus(existingAppointment.status || "pendente");
     }
@@ -40,10 +43,16 @@ export default function CreateAppointment({ onCreated, existingAppointment, onCa
       return;
     }
 
+    // não permite agendar datas passadas
+    if (new Date(appointmentDate) < new Date().setHours(0, 0, 0, 0)) {
+      setModalMessage("Não é possível agendar em uma data passada");
+      setModalOpen(true);
+      return;
+    }
+
     setLoading(true);
     try {
       if (isEditing) {
-        // atualizar agendamento
         await updateAppointment(existingAppointment._id, {
           name,
           service,
@@ -52,7 +61,6 @@ export default function CreateAppointment({ onCreated, existingAppointment, onCa
           status,
         });
       } else {
-        // criar novo
         await createAppointment({
           name,
           service,
@@ -84,7 +92,7 @@ export default function CreateAppointment({ onCreated, existingAppointment, onCa
         <h2>{isEditing ? "Editar Agendamento" : "Criar Agendamento"}</h2>
 
         <input
-          placeholder="Nome do cliente"
+          placeholder="Nome"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -99,6 +107,7 @@ export default function CreateAppointment({ onCreated, existingAppointment, onCa
           type="date"
           value={appointmentDate}
           onChange={(e) => setAppointmentDate(e.target.value)}
+          min={new Date().toISOString().slice(0, 10)}
         />
 
         <input
@@ -149,7 +158,7 @@ export default function CreateAppointment({ onCreated, existingAppointment, onCa
               type="button"
               onClick={onCancel}
               style={{
-                background: "#6b7280",
+                background: "#E63946",
                 color: "white",
                 border: "none",
                 padding: "0.8em 1.2em",

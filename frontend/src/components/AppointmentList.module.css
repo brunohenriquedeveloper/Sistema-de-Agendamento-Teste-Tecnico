@@ -8,3 +8,23 @@
     text-align: center;
     margin-bottom: 1em;
 }
+
+.createFirstAppointment p{
+    font-size: 1rem;
+}
+
+.createFirstAppointment button {
+    margin-top: 1em;
+    padding: 1.5em;
+    font-size: 1rem;
+    background-color: #075ae0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.createFirstAppointment button:hover {
+    background-color: #0644b4;
+}

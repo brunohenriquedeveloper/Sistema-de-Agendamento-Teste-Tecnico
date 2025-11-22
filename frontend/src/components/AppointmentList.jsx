@@ -5,7 +5,7 @@ import ConfirmModal from "./ui/ConfirmModal";
 import CreateAppointment from "./CreateAppointment"; // formulário reutilizado
 import styles from "./AppointmentList.module.css";
 
-export default function AppointmentList({ onBack }) {
+export default function AppointmentList() {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -14,8 +14,9 @@ export default function AppointmentList({ onBack }) {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
 
-  // edição
+  // criação / edição
   const [editingAppointment, setEditingAppointment] = useState(null);
+  const [creating, setCreating] = useState(false);
 
   const load = async () => {
     setLoading(true);
@@ -56,44 +57,65 @@ export default function AppointmentList({ onBack }) {
     setSelectedId(null);
   };
 
-  // abrir formulário de edição
   const handleEdit = (appointment) => {
     setEditingAppointment(appointment);
+    setCreating(false);
   };
 
-  // quando edição for concluída ou cancelada
   const handleEditedOrCanceled = () => {
     setEditingAppointment(null);
+    setCreating(false);
     load(); // recarrega a lista atualizada
   };
 
   if (loading) return <p>Carregando agendamentos...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
+  const isEditingOrCreating = editingAppointment !== null || creating;
+
   return (
     <div className={styles.appointmentContainer}>
-      <h1>Lista de Agendamentos</h1>
+      {/* Mostrar título apenas se não estiver editando/criando */}
+      {!isEditingOrCreating && <h1>Lista de Agendamentos</h1>}
 
-      {editingAppointment ? (
+      {isEditingOrCreating ? (
         <CreateAppointment
           existingAppointment={editingAppointment}
           onCreated={handleEditedOrCanceled}
-          onCancel={handleEditedOrCanceled} // botão Cancelar volta para a lista
+          onCancel={handleEditedOrCanceled}
         />
+      ) : list.length === 0 ? (
+        <div className={styles.createFirstAppointment}
+          style={{
+            textAlign: "center",
+            padding: "2rem",
+            color: "#555",
+          }}
+        >
+          <p>Você ainda não tem nenhum agendamento.</p>
+          <p>Crie seu primeiro agendamento agora!</p>
+          <button
+            onClick={() => setCreating(true)}
+          >
+            Criar Seu Primeiro Agendamento
+          </button>
+        </div>
       ) : (
-        <>
-          <div className={styles.appointmentList}>
-            {list.length === 0 && <p>Nenhum agendamento encontrado</p>}
-            {list.map((a) => (
-              <AppointmentItem
-                key={a._id}
-                appointment={a}
-                onDelete={() => handleDeleteClick(a._id)}
-                onEdit={() => handleEdit(a)}
-              />
-            ))}
-          </div>
-        </>
+        <div className={styles.appointmentList}>
+          {list.map((a) => (
+            <AppointmentItem
+              key={a._id}
+              appointment={{
+                ...a,
+                appointmentDate: a.appointmentDate
+                  ? new Date(a.appointmentDate).toISOString().slice(0, 10)
+                  : "",
+              }}
+              onDelete={() => handleDeleteClick(a._id)}
+              onEdit={() => handleEdit(a)}
+            />
+          ))}
+        </div>
       )}
 
       <ConfirmModal
