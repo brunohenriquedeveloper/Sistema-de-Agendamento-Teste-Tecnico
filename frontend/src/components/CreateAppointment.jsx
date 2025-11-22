@@ -41,24 +41,21 @@ export default function CreateAppointment({ onCreated, existingAppointment, onCa
       return;
     }
 
-    // ***** VALIDAÇÃO DE DATA PASSADA *****
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-
     const selectedDate = new Date(appointmentDate + "T00:00:00");
 
-    if (selectedDate < today) {
+    // ***** VALIDAÇÃO DE DATA PASSADA APENAS QUANDO CRIANDO *****
+    if (!isEditing && selectedDate < today) {
       setModalMessage("Não é possível agendar em uma data passada");
       setModalOpen(true);
       return;
     }
 
-    // ***** VALIDAÇÃO DE HORÁRIO PASSADO NO MESMO DIA *****
+    // ***** VALIDAÇÃO DE HORÁRIO PASSADO NO MESMO DIA APENAS QUANDO CRIANDO *****
     const now = new Date();
-
-    if (selectedDate.getTime() === today.getTime()) {
+    if (!isEditing && selectedDate.getTime() === today.getTime()) {
       const [h, m] = appointmentTime.split(":").map(Number);
-
       const selectedDateTime = new Date();
       selectedDateTime.setHours(h, m, 0, 0);
 
