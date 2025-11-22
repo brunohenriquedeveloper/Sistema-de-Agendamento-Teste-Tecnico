@@ -4,7 +4,6 @@ import AlertModal from "./ui/AlertModal";
 import styles from "./CreateAppointment.module.css";
 
 export default function CreateAppointment({ onCreated, existingAppointment, onCancel }) {
-  // estados do formulário
   const [name, setName] = useState("");
   const [service, setService] = useState("");
   const [appointmentDate, setAppointmentDate] = useState("");
@@ -12,19 +11,18 @@ export default function CreateAppointment({ onCreated, existingAppointment, onCa
   const [status, setStatus] = useState("pendente");
   const [loading, setLoading] = useState(false);
 
-  // estados do AlertModal
+  // AlertModal
   const [modalOpen, setModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
 
   const isEditing = !!existingAppointment;
 
-  // preencher formulário se houver edição
   useEffect(() => {
     if (existingAppointment) {
       setName(existingAppointment.name || "");
       setService(existingAppointment.service || "");
       setAppointmentDate(
-        existingAppointment?.appointmentDate
+        existingAppointment.appointmentDate
           ? new Date(existingAppointment.appointmentDate).toISOString().slice(0, 10)
           : ""
       );
@@ -43,14 +41,21 @@ export default function CreateAppointment({ onCreated, existingAppointment, onCa
       return;
     }
 
-    // não permite agendar datas passadas
-    if (new Date(appointmentDate) < new Date().setHours(0, 0, 0, 0)) {
+    // OPÇÃO 1: impedir datas passadas, mas permitir HOJE (qualquer hora)
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // hoje às 00:00
+
+    // appointmentDate vem no formato "YYYY-MM-DD" do input type="date"
+    const selectedDate = new Date(appointmentDate + "T00:00:00"); // interpreta como local
+
+    if (selectedDate < today) {
       setModalMessage("Não é possível agendar em uma data passada");
       setModalOpen(true);
       return;
     }
 
     setLoading(true);
+
     try {
       if (isEditing) {
         await updateAppointment(existingAppointment._id, {
@@ -79,7 +84,7 @@ export default function CreateAppointment({ onCreated, existingAppointment, onCa
 
       if (onCreated) onCreated();
     } catch (err) {
-      setModalMessage(err.message || "Erro ao salvar agendamento");
+      setModalMessage(err?.message || "Erro ao salvar agendamento");
       setModalOpen(true);
     } finally {
       setLoading(false);
@@ -137,7 +142,7 @@ export default function CreateAppointment({ onCreated, existingAppointment, onCa
           <button
             type="submit"
             disabled={loading}
-           className={styles.submitButton}
+            className={styles.submitButton}
           >
             {loading
               ? "Salvando..."
@@ -147,13 +152,12 @@ export default function CreateAppointment({ onCreated, existingAppointment, onCa
           </button>
 
           <button
-  type="button"
-  onClick={onCancel}
-  className={styles.cancelButton}
->
-  Cancelar
-</button>
-
+            type="button"
+            onClick={onCancel}
+            className={styles.cancelButton}
+          >
+            Cancelar
+          </button>
         </div>
       </form>
 

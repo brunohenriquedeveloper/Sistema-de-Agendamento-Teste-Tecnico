@@ -15,7 +15,7 @@ const Header = ({ currentView, onChangeView }) => {
         justifyContent: "space-between",
       }}
     >
-      <h1 style={{ margin: 0, fontSize: "1.5rem" }}>AgenAI</h1>
+      <h1 style={{ margin: 0, fontSize: "1.5rem", cursor: "pointer" }}>AgendeAI</h1>
 
       <Navbar currentView={currentView} onChangeView={onChangeView} />
     </header>

@@ -12,7 +12,7 @@ const Footer = () => {
       }}
     >
       <p style={{ margin: 0 }}>
-        © {new Date().getFullYear()} AgenAI — Sistema de Agendamentos
+        © {new Date().getFullYear()} AgendeAI — Sistema de Agendamentos
       </p>
     </footer>
   );

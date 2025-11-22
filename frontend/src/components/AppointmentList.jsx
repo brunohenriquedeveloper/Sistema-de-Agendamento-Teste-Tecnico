@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchAppointments, deleteAppointment } from "../api/api";
 import AppointmentItem from "./AppointmentItem";
 import ConfirmModal from "./ui/ConfirmModal";
-import CreateAppointment from "./CreateAppointment"; // formulário reutilizado
+import CreateAppointment from "./CreateAppointment"; 
 import styles from "./AppointmentList.module.css";
 
 export default function AppointmentList() {
@@ -10,11 +10,9 @@ export default function AppointmentList() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // modal de exclusão
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
 
-  // criação / edição
   const [editingAppointment, setEditingAppointment] = useState(null);
   const [creating, setCreating] = useState(false);
 
@@ -65,7 +63,7 @@ export default function AppointmentList() {
   const handleEditedOrCanceled = () => {
     setEditingAppointment(null);
     setCreating(false);
-    load(); // recarrega a lista atualizada
+    load();
   };
 
   if (loading) return <p>Carregando agendamentos...</p>;
@@ -75,29 +73,22 @@ export default function AppointmentList() {
 
   return (
     <div className={styles.appointmentContainer}>
-      {/* Mostrar título apenas se não estiver editando/criando */}
-      {/* Header com título + botão (aparece só quando há itens na lista) */}
-{!isEditingOrCreating && (
-  <div
-    className={styles.header}
-    style={{
-      justifyContent: list.length > 0 ? "space-between" : "center",
-    }}
-  >
-    <h1>Lista de Agendamentos</h1>
 
-    {list.length > 0 && (
-      <button
-        className={styles.createButton}
-        onClick={() => setCreating(true)}
-      >
-        Criar Agendamento
-      </button>
-    )}
-  </div>
-)}
+      {/* Header normal quando NÃO está criando/editando */}
+      {!isEditingOrCreating && list.length > 0 && (
+        <div className={styles.header}>
+          <h1>Lista de Agendamentos</h1>
 
+          <button
+            className={styles.createButton}
+            onClick={() => setCreating(true)}
+          >
+            Criar Agendamento
+          </button>
+        </div>
+      )}
 
+      {/* Tela de Criar / Editar */}
       {isEditingOrCreating ? (
         <CreateAppointment
           existingAppointment={editingAppointment}
@@ -105,21 +96,17 @@ export default function AppointmentList() {
           onCancel={handleEditedOrCanceled}
         />
       ) : list.length === 0 ? (
-        <div className={styles.createFirstAppointment}
-          style={{
-            textAlign: "center",
-            padding: "2rem",
-            color: "#555",
-          }}
-        >
-          <p>Você ainda não tem nenhum agendamento.</p>
+
+        <div className={styles.createFirstAppointment}>
+          <h1>Organize suas tarefas!</h1>
+          <h2>Você ainda não tem nenhum agendamento</h2>
           <p>Crie seu primeiro agendamento agora!</p>
-          <button
-            onClick={() => setCreating(true)}
-          >
+
+          <button onClick={() => setCreating(true)}>
             Criar Seu Primeiro Agendamento
           </button>
         </div>
+
       ) : (
         <div className={styles.appointmentList}>
           {list.map((a) => (

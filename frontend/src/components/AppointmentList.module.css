@@ -1,32 +1,52 @@
 .appointmentList {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 16px; 
+  gap: 16px;
 }
 
 .appointmentContainer h1 {
-    text-align: left;
-    margin-bottom: 1em;
+  text-align: left;
+  margin-bottom: 1em;
 }
 
-.createFirstAppointment p{
-    font-size: 1rem;
+.createFirstAppointment{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 8em;
+}
+
+.createFirstAppointment h1 {
+    font-size: 3rem;
+    margin-bottom: 0.2em;
+}
+
+.createFirstAppointment h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5em;
+    color: rgb(115, 114, 114);
+}
+.createFirstAppointment p {
+  font-size: 1rem;
+  color: rgb(115, 114, 114);
 }
 
 .createFirstAppointment button {
-    margin-top: 1em;
-    padding: 1.5em;
-    font-size: 1rem;
-    background-color: #075ae0;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
+  margin-top: 1em;
+  padding: 1.5em;
+  font-size: 1rem;
+  background-color: #075ae0;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
 }
 
 .createFirstAppointment button:hover {
-    background-color: #0644b4;
+  background-color: #0644b4;
 }
 
 .header {
@@ -35,21 +55,21 @@
   flex-wrap: wrap;
   align-items: center;
   margin-bottom: 1.8rem;
+  width: 100%;
 }
+
 .header > * {
-  flex: 1 1 400px; /* cada item precisa de 300px para não quebrar */
+  flex: 1 1 400px;
 }
 
 .header h1 {
   margin-right: auto;
 }
 
-.header button {   
-        padding: 1em;
-        margin-bottom: 1em;
-
-    }
-
+.header button {
+  padding: 1em;
+  margin-bottom: 1em;
+}
 
 .createButton {
   padding: 8px 16px;
@@ -65,21 +85,57 @@
 .createButton:hover {
   background: #0053cc;
 }
-@media screen and (max-width: 424px) {
-    .header h1 {
-        font-size: 1.5rem;
-    }
-}
+
+
 
 @media screen and (max-width: 650px) {
-    .header button {   
-        margin: auto;
-        max-width: 100%;
-    }
+  .header button {
+    margin: auto;
+    max-width: 100%;
+  }
 
-    .header h1 {
-        text-align: center;
-    }
+  .header h1 {
+    text-align: center;
+  }
 
+  .createFirstAppointment h1 {
+    font-size: 2rem;
+    margin-bottom: 0.2em;
 }
 
+.createFirstAppointment h2 {
+    font-size: 1rem;
+    margin-bottom: 0.5em;
+    color: rgb(115, 114, 114);
+}
+.createFirstAppointment p {
+  font-size: .7rem;
+  color: rgb(115, 114, 114);
+}
+}
+
+@media screen and (max-width: 424px) {
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
+  .createFirstAppointment h1 {
+    font-size: 1.6rem;
+    margin-bottom: 0.2em;
+}
+
+.createFirstAppointment h2 {
+    font-size: .8rem;
+    margin-bottom: 0.5em;
+    color: rgb(115, 114, 114);
+}
+.createFirstAppointment p {
+  font-size: .7rem;
+  color: rgb(115, 114, 114);
+}
+
+.createFirstAppointment button {
+  padding: 1em;
+  font-size: .8rem;
+}
+}
