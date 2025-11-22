@@ -24,7 +24,6 @@
 .form {
     display: grid;
     gap: 1em;
-
     /* largura total do container */
     width: 100%;
 }
@@ -104,4 +103,12 @@
 
 .form .cancelButton:hover {
     background-color: #8b1a24;
+}
+
+@media screen and (max-width: 350px) {
+    .formContainer {
+        margin-right: 3em;
+        padding: 1.5em;
+        min-width: 280px;
+    }
 }

@@ -34,7 +34,7 @@ export default function AppointmentItem({ appointment, onDelete, onEdit }) {
       <h3 style={{ margin: 0 }}>{service}</h3>
 
       <p style={{ margin: "6px 0" }}>
-        <strong>Cliente:</strong> {name}
+        <strong>Usuário:</strong> {name}
       </p>
 
       <p style={{ margin: "6px 0" }}>
