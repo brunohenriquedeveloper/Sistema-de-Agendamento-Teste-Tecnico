@@ -1,4 +1,6 @@
 import React from "react";
+import { FaTrash, FaEdit } from "react-icons/fa";
+import styles from "./AppointmentItem.module.css";
 
 export default function AppointmentItem({ appointment, onDelete, onEdit }) {
   if (!appointment) return null;
@@ -19,6 +21,8 @@ export default function AppointmentItem({ appointment, onDelete, onEdit }) {
         borderRadius: 8,
         marginBottom: 12,
         background: "#fafafa",
+        borderRight: "8px solid #1F2937", 
+        boxShadow: "0 2px 6px rgba(0, 0, 0, 0.2)",
       }}
     >
       <h3 style={{ margin: 0 }}>{service}</h3>
@@ -38,28 +42,16 @@ export default function AppointmentItem({ appointment, onDelete, onEdit }) {
       <div style={{ marginTop: 10, display: "flex", gap: "8px" }}>
         <button
           onClick={() => onDelete(_id)}
-          style={{
-            background: "#e63946",
-            color: "white",
-            border: "none",
-            padding: "8px 12px",
-            borderRadius: 6,
-            cursor: "pointer",
-          }}
+          className={styles.deleteButton}
         >
+           <FaTrash className={styles.icon} size={12} />
           Excluir
         </button>
         <button
           onClick={() => onEdit(appointment)}
-          style={{
-            background: "#1d4ed8",
-            color: "white",
-            border: "none",
-            padding: "8px 12px",
-            borderRadius: 6,
-            cursor: "pointer",
-          }}
+          className={styles.editButton}
         >
+        <FaEdit className={styles.icon} size={13} />
           Editar
         </button>
       </div>

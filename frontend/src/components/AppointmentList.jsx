@@ -76,7 +76,27 @@ export default function AppointmentList() {
   return (
     <div className={styles.appointmentContainer}>
       {/* Mostrar título apenas se não estiver editando/criando */}
-      {!isEditingOrCreating && <h1>Lista de Agendamentos</h1>}
+      {/* Header com título + botão (aparece só quando há itens na lista) */}
+{!isEditingOrCreating && (
+  <div
+    className={styles.header}
+    style={{
+      justifyContent: list.length > 0 ? "space-between" : "center",
+    }}
+  >
+    <h1>Lista de Agendamentos</h1>
+
+    {list.length > 0 && (
+      <button
+        className={styles.createButton}
+        onClick={() => setCreating(true)}
+      >
+        Criar Agendamento
+      </button>
+    )}
+  </div>
+)}
+
 
       {isEditingOrCreating ? (
         <CreateAppointment

@@ -1,0 +1,33 @@
+.icon {
+  cursor: pointer;
+  transition: 0.2s;
+  margin-right: .4em;
+  align-self: center;
+}
+
+
+.deleteButton {
+            background: #e63946;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+}
+
+.deleteButton:hover {
+  background-color: #8b1a24;
+}
+
+.editButton {
+            background: #1d4ed8;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+}
+
+.editButton:hover {
+  background-color: #0644b4;
+}

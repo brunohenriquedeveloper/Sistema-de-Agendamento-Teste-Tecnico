@@ -137,14 +137,7 @@ export default function CreateAppointment({ onCreated, existingAppointment, onCa
           <button
             type="submit"
             disabled={loading}
-            style={{
-              background: "#3b82f6",
-              color: "white",
-              border: "none",
-              padding: "0.8em 1.2em",
-              borderRadius: 6,
-              cursor: "pointer",
-            }}
+           className={styles.submitButton}
           >
             {loading
               ? "Salvando..."
@@ -153,22 +146,14 @@ export default function CreateAppointment({ onCreated, existingAppointment, onCa
               : "Criar Agendamento"}
           </button>
 
-          {isEditing && (
-            <button
-              type="button"
-              onClick={onCancel}
-              style={{
-                background: "#E63946",
-                color: "white",
-                border: "none",
-                padding: "0.8em 1.2em",
-                borderRadius: 6,
-                cursor: "pointer",
-              }}
-            >
-              Cancelar
-            </button>
-          )}
+          <button
+  type="button"
+  onClick={onCancel}
+  className={styles.cancelButton}
+>
+  Cancelar
+</button>
+
         </div>
       </form>
 

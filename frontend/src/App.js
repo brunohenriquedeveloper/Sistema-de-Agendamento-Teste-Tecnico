@@ -16,9 +16,7 @@ function App() {
   return (
     <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
 
-      <Header />
-
-      <Navbar currentView={view} onChangeView={setView} />
+      <Header currentView={view} onChangeView={setView} />
 
       <main style={{ padding: 24, width: "100%", margin: "0 auto", flex: 1 }}>
        {view === "list" 

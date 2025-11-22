@@ -1,43 +1,46 @@
 import React from "react";
+import { AiOutlineHome, AiOutlinePlusCircle, AiOutlineUnorderedList } from "react-icons/ai";
 
 const Navbar = ({ currentView, onChangeView }) => {
+  const iconStyle = {
+    cursor: "pointer",
+    fontSize: "1.6rem",
+    transition: "0.2s",
+    color: "#fff", // fica branco no header escuro
+    opacity: 0.85,
+  };
+
+  const activeStyle = {
+    color: "#3b82f6", // azul quando está ativa
+    opacity: 1,
+  };
+
   return (
-    <nav 
+    <nav
       style={{
-        background: "#ffffffff",
-        padding: "12px 24px",
         display: "flex",
-        gap: "16px",
-        borderRadius: "8px",
+        alignItems: "center",
+        gap: "20px",
+        background: "transparent",
       }}
     >
-      <button
+      {/* Home -> Lista */}
+      <AiOutlineHome
+        style={currentView === "list" ? activeStyle : iconStyle}
         onClick={() => onChangeView("list")}
-        style={{
-          padding: "8px 16px",
-          background: currentView === "list" ? "#0066f6ff" : "#0066f6ff",
-          border: "none",
-          color: "white",
-          cursor: "pointer",
-          borderRadius: 6
-        }}
-      >
-        Lista de Agendamentos
-      </button>
+      />
 
-      <button
+      {/* Criar */}
+      <AiOutlinePlusCircle
+        style={currentView === "create" ? activeStyle : iconStyle}
         onClick={() => onChangeView("create")}
-        style={{
-          padding: "8px 16px",
-          background: currentView === "create" ? "#0066f6ff" : "#0066f6ff",
-          border: "none",
-          color: "white",
-          cursor: "pointer",
-          borderRadius: 6
-        }}
-      >
-        Criar Agendamento
-      </button>
+      />
+
+      {/* Lista (redundante, mas caso queira outro ícone) */}
+      <AiOutlineUnorderedList
+        style={currentView === "list" ? activeStyle : iconStyle}
+        onClick={() => onChangeView("list")}
+      />
     </nav>
   );
 };

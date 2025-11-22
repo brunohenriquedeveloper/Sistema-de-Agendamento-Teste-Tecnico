@@ -1,9 +1,11 @@
 import React from "react";
 import styles from "./Header.module.css";
+import Navbar from "./Navbar";
 
-const Header = () => {
+const Header = ({ currentView, onChangeView }) => {
   return (
-    <header className={styles.header}
+    <header
+      className={styles.header}
       style={{
         background: "#1f2937",
         color: "#fff",
@@ -15,7 +17,7 @@ const Header = () => {
     >
       <h1 style={{ margin: 0, fontSize: "1.5rem" }}>AgenAI</h1>
 
-      <span style={{ opacity: 0.8 }}>Sistema de Agendamentos</span>
+      <Navbar currentView={currentView} onChangeView={onChangeView} />
     </header>
   );
 };
