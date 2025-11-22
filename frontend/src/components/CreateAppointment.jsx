@@ -41,17 +41,32 @@ export default function CreateAppointment({ onCreated, existingAppointment, onCa
       return;
     }
 
-    // OPÇÃO 1: impedir datas passadas, mas permitir HOJE (qualquer hora)
+    // ***** VALIDAÇÃO DE DATA PASSADA *****
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // hoje às 00:00
+    today.setHours(0, 0, 0, 0);
 
-    // appointmentDate vem no formato "YYYY-MM-DD" do input type="date"
-    const selectedDate = new Date(appointmentDate + "T00:00:00"); // interpreta como local
+    const selectedDate = new Date(appointmentDate + "T00:00:00");
 
     if (selectedDate < today) {
       setModalMessage("Não é possível agendar em uma data passada");
       setModalOpen(true);
       return;
+    }
+
+    // ***** VALIDAÇÃO DE HORÁRIO PASSADO NO MESMO DIA *****
+    const now = new Date();
+
+    if (selectedDate.getTime() === today.getTime()) {
+      const [h, m] = appointmentTime.split(":").map(Number);
+
+      const selectedDateTime = new Date();
+      selectedDateTime.setHours(h, m, 0, 0);
+
+      if (selectedDateTime < now) {
+        setModalMessage("O horário escolhido já passou hoje");
+        setModalOpen(true);
+        return;
+      }
     }
 
     setLoading(true);
@@ -139,11 +154,7 @@ export default function CreateAppointment({ onCreated, existingAppointment, onCa
         </select>
 
         <div style={{ display: "flex", gap: "1em", marginTop: "1em" }}>
-          <button
-            type="submit"
-            disabled={loading}
-            className={styles.submitButton}
-          >
+          <button type="submit" disabled={loading} className={styles.submitButton}>
             {loading
               ? "Salvando..."
               : isEditing
