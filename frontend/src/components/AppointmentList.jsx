@@ -71,8 +71,8 @@ if (loading)
     <p
       style={{
         textAlign: "center",
-        marginTop: "4em",
-        fontSize: "1rem",
+        marginTop: "8em",
+        fontSize: "1.5rem",
         fontWeight: "500",
       }}
     >
