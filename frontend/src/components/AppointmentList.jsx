@@ -66,8 +66,19 @@ export default function AppointmentList() {
     load();
   };
 
-  if (loading) return <p>Carregando agendamentos...</p>;
-  if (error) return <p style={{ color: "red" }}>{error}</p>;
+if (loading)
+  return (
+    <p
+      style={{
+        textAlign: "center",
+        marginTop: "4em",
+        fontSize: "1rem",
+        fontWeight: "500",
+      }}
+    >
+      Carregando agendamentos...
+    </p>
+  );  if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   const isEditingOrCreating = editingAppointment !== null || creating;
 
