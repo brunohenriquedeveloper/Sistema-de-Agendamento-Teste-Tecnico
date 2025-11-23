@@ -8,6 +8,7 @@
   <a href="#endpoints-da-api">Endpoints</a> •
   <a href="#deploy">Deploy</a> •
   <a href="#demonstracao">Demonstração</a> •
+  <a href="#extras">Extras</a> •
   <a href="#sobre-mim">Sobre mim</a>
 </p>
 
@@ -164,6 +165,25 @@ A primeira requisição pode levar cerca de 20 segundos.</p>
 </table>
 
 <br/>
+
+<hr/>
+
+<h2 id="extras">Extras Implementados ✨</h2>
+
+<ul>
+  <li><strong>Design Responsivo:</strong> Layout adaptado para diferentes tamanhos de tela (mobile, tablet e desktop).</li>
+
+  <li><strong>Componentização:</strong> Componentes reutilizáveis e melhor organização da arquitetura do frontend.</li>
+
+  <li><strong>UI Intuitiva:</strong> Interface simples, clara e fácil de navegar, seguindo boas práticas de UX.</li>
+
+  <li><strong>Deploy Completo:</strong> Aplicação publicada com backend no Render e frontend na Vercel.</li>
+
+  <li><strong>Gestão de Status:</strong> Funcionalidade para alterar status dos compromissos/tarefas diretamente na interface.</li>
+
+  <li><strong>Função de Edição Aprimorada:</strong> Permite editar qualquer campo do agendamento de forma simples e rápida.</li>
+</ul>
+
 
 <hr/>
 
