@@ -60,35 +60,35 @@ export default function AppointmentList() {
     setCreating(false);
   };
 
-  const handleEditedOrCanceled = () => {
+  const handleFormClose = (reload = false) => {
     setEditingAppointment(null);
     setCreating(false);
-    load();
+    if (reload) load();
   };
 
-if (loading)
-  return (
-    <p
-      style={{
-        textAlign: "center",
-        marginTop: "8em",
-        fontSize: "1.5rem",
-        fontWeight: "500",
-      }}
-    >
-      Carregando agendamentos...
-    </p>
-  );  if (error) return <p style={{ color: "red" }}>{error}</p>;
+  if (loading)
+    return (
+      <p
+        style={{
+          textAlign: "center",
+          marginTop: "8em",
+          fontSize: "1.5rem",
+          fontWeight: "500",
+        }}
+      >
+        Carregando agendamentos...
+      </p>
+    );
+
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   const isEditingOrCreating = editingAppointment !== null || creating;
 
   return (
     <div className={styles.appointmentContainer}>
-
       {!isEditingOrCreating && list.length > 0 && (
         <div className={styles.header}>
           <h1>Lista de Agendamentos</h1>
-
           <button
             className={styles.createButton}
             onClick={() => setCreating(true)}
@@ -100,25 +100,19 @@ if (loading)
 
       {isEditingOrCreating ? (
         <CreateAppointment
-  existingAppointment={editingAppointment}
-  onCreated={handleEditedOrCanceled}  
-  onCancel={() => {
-    setEditingAppointment(null);
-    setCreating(false);
-  }}
-/>
+          existingAppointment={editingAppointment}
+          onCreated={() => handleFormClose(true)}  
+          onCancel={() => handleFormClose(false)}
+        />
       ) : list.length === 0 ? (
-
         <div className={styles.createFirstAppointment}>
           <h1>Organize suas tarefas!</h1>
           <h2>Você ainda não tem nenhum agendamento</h2>
           <p>Crie seu primeiro agendamento agora!</p>
-
           <button onClick={() => setCreating(true)}>
             Criar Seu Primeiro Agendamento
           </button>
         </div>
-
       ) : (
         <div className={styles.appointmentList}>
           {list.map((a) => (
