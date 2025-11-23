@@ -1,17 +1,17 @@
 import React from "react";
 import { AiOutlineHome, AiOutlinePlusCircle, AiOutlineUnorderedList } from "react-icons/ai";
 
-const Navbar = ({ currentView, onChangeView }) => {
+const Navbar = ({ onCreate, onList }) => {
   const iconStyle = {
     cursor: "pointer",
     fontSize: "1.6rem",
     transition: "0.2s",
-    color: "#fff", 
+    color: "#fff",
     opacity: 0.85,
   };
 
   const activeStyle = {
-    color: "#3b82f6", 
+    color: "#3b82f6",
     opacity: 1,
   };
 
@@ -25,18 +25,18 @@ const Navbar = ({ currentView, onChangeView }) => {
       }}
     >
       <AiOutlineHome
-        style={currentView === "list" ? activeStyle : iconStyle}
-        onClick={() => onChangeView("list")}
+        style={iconStyle}
+        onClick={onList}
       />
 
       <AiOutlinePlusCircle
-        style={currentView === "create" ? activeStyle : iconStyle}
-        onClick={() => onChangeView("create")}
+        style={iconStyle}
+        onClick={onCreate}
       />
 
       <AiOutlineUnorderedList
-        style={currentView === "list" ? activeStyle : iconStyle}
-        onClick={() => onChangeView("list")}
+        style={iconStyle}
+        onClick={onList}
       />
     </nav>
   );

@@ -3,6 +3,7 @@ import { fetchAppointments, deleteAppointment } from "../api/api";
 import AppointmentItem from "./AppointmentItem";
 import ConfirmModal from "./ui/ConfirmModal";
 import CreateAppointment from "./CreateAppointment"; 
+import Navbar from "./Navbar"; 
 import styles from "./AppointmentList.module.css";
 
 export default function AppointmentList() {
@@ -79,6 +80,17 @@ export default function AppointmentList() {
 
   return (
     <div className={styles.appointmentContainer}>
+      <Navbar
+        onCreate={() => {
+          setCreating(true);
+          setEditingAppointment(null);
+        }}
+        onList={() => {
+          setCreating(false);
+          setEditingAppointment(null);
+        }}
+      />
+
       {!isEditingOrCreating && list.length > 0 && (
         <div className={styles.header}>
           <h1>Lista de Agendamentos</h1>
