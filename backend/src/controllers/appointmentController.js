@@ -75,7 +75,6 @@ export const updateAppointment = async (req, res) => {
   }
 };
 
-// Deletar um compromisso
 export const deleteAppointment = async (req, res) => {
   try {
     const { id } = req.params;

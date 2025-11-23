@@ -3,16 +3,14 @@ import CreateAppointment from "../components/CreateAppointment";
 import AppointmentList from "../components/AppointmentList";
 
 export default function Dashboard() {
-  const [view, setView] = useState("landing"); // landing | list | create | edit
+  const [view, setView] = useState("landing"); 
   const [editingAppointment, setEditingAppointment] = useState(null);
 
-  // Quando a edição é concluída, limpa o estado e volta para a lista
   const handleCreatedOrEdited = () => {
     setEditingAppointment(null);
     setView("list");
   };
 
-  // Quando o usuário cancela a edição, volta para a lista
   const handleCancelEdit = () => {
     setEditingAppointment(null);
     setView("list");

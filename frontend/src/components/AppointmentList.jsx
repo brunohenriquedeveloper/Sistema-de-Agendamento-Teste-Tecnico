@@ -85,7 +85,6 @@ if (loading)
   return (
     <div className={styles.appointmentContainer}>
 
-      {/* Header normal quando NÃO está criando/editando */}
       {!isEditingOrCreating && list.length > 0 && (
         <div className={styles.header}>
           <h1>Lista de Agendamentos</h1>
@@ -99,7 +98,6 @@ if (loading)
         </div>
       )}
 
-      {/* Tela de Criar / Editar */}
       {isEditingOrCreating ? (
         <CreateAppointment
           existingAppointment={editingAppointment}

@@ -3,7 +3,6 @@ import AppointmentList from "./components/AppointmentList";
 import CreateAppointment from "./components/CreateAppointment";
 import "./index.css";
 import "./components/AppointmentList.module.css"
-
 import Header from "./components/layout/Header";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";

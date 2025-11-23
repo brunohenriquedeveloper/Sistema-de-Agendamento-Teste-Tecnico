@@ -6,12 +6,12 @@ const Navbar = ({ currentView, onChangeView }) => {
     cursor: "pointer",
     fontSize: "1.6rem",
     transition: "0.2s",
-    color: "#fff", // fica branco no header escuro
+    color: "#fff", 
     opacity: 0.85,
   };
 
   const activeStyle = {
-    color: "#3b82f6", // azul quando está ativa
+    color: "#3b82f6", 
     opacity: 1,
   };
 
@@ -24,19 +24,16 @@ const Navbar = ({ currentView, onChangeView }) => {
         background: "transparent",
       }}
     >
-      {/* Home -> Lista */}
       <AiOutlineHome
         style={currentView === "list" ? activeStyle : iconStyle}
         onClick={() => onChangeView("list")}
       />
 
-      {/* Criar */}
       <AiOutlinePlusCircle
         style={currentView === "create" ? activeStyle : iconStyle}
         onClick={() => onChangeView("create")}
       />
 
-      {/* Lista (redundante, mas caso queira outro ícone) */}
       <AiOutlineUnorderedList
         style={currentView === "list" ? activeStyle : iconStyle}
         onClick={() => onChangeView("list")}

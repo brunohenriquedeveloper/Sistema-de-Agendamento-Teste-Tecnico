@@ -7,12 +7,12 @@
 
 
 .deleteButton {
-            background: #e63946;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 6px;
-            cursor: pointer;
+  background: #e63946;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 .deleteButton:hover {
@@ -20,12 +20,12 @@
 }
 
 .editButton {
-            background: #1d4ed8;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 6px;
-            cursor: pointer;
+  background: #1d4ed8;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 .editButton:hover {

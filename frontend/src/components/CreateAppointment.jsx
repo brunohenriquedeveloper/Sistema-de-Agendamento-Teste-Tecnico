@@ -11,7 +11,6 @@ export default function CreateAppointment({ onCreated, existingAppointment, onCa
   const [status, setStatus] = useState("pendente");
   const [loading, setLoading] = useState(false);
 
-  // AlertModal
   const [modalOpen, setModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
 
@@ -34,7 +33,6 @@ export default function CreateAppointment({ onCreated, existingAppointment, onCa
   const submit = async (e) => {
     e.preventDefault();
 
-    // validação obrigatória
     if (!name || !service || !appointmentDate || !appointmentTime) {
       setModalMessage("Preencha nome, serviço, data e hora");
       setModalOpen(true);
@@ -45,14 +43,12 @@ export default function CreateAppointment({ onCreated, existingAppointment, onCa
     today.setHours(0, 0, 0, 0);
     const selectedDate = new Date(appointmentDate + "T00:00:00");
 
-    // ***** VALIDAÇÃO DE DATA PASSADA APENAS QUANDO CRIANDO *****
     if (!isEditing && selectedDate < today) {
       setModalMessage("Não é possível agendar em uma data passada");
       setModalOpen(true);
       return;
     }
 
-    // ***** VALIDAÇÃO DE HORÁRIO PASSADO NO MESMO DIA APENAS QUANDO CRIANDO *****
     const now = new Date();
     if (!isEditing && selectedDate.getTime() === today.getTime()) {
       const [h, m] = appointmentTime.split(":").map(Number);
@@ -87,7 +83,6 @@ export default function CreateAppointment({ onCreated, existingAppointment, onCa
         });
       }
 
-      // resetar campos
       setName("");
       setService("");
       setAppointmentDate("");
