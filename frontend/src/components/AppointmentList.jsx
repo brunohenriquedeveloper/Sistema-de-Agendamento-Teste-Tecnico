@@ -100,10 +100,13 @@ if (loading)
 
       {isEditingOrCreating ? (
         <CreateAppointment
-          existingAppointment={editingAppointment}
-          onCreated={handleEditedOrCanceled}
-          onCancel={handleEditedOrCanceled}
-        />
+  existingAppointment={editingAppointment}
+  onCreated={handleEditedOrCanceled}  
+  onCancel={() => {
+    setEditingAppointment(null);
+    setCreating(false);
+  }}
+/>
       ) : list.length === 0 ? (
 
         <div className={styles.createFirstAppointment}>
