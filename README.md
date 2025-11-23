@@ -189,7 +189,7 @@ A primeira requisição pode levar cerca de 20 segundos.</p>
 
 <h2 id="sobre-mim">Sobre Mim 👨🏻</h2>
 
-<p>Meu nome é <strong>Bruno Henrique</strong>, sou desenvolvedor Full Stack e atualmente curso Ciência da Computação. Tenho experiência com JavaScript, React, Node.js, Express e MongoDB. Sou UX Designer formado pelo curso do Google, o que me proporcionou uma base sólida em usabilidade e experiência do usuário. </p>
+<p>Meu nome é <strong>Bruno Henrique</strong>, sou desenvolvedor Full Stack e atualmente curso Ciência da Computação na Universidade Federal de Sergipe (UFS). Tenho experiência com JavaScript, React, Node.js, Express e MongoDB. Sou UX Designer formado pelo curso do Google, o que me proporcionou uma base sólida em usabilidade e experiência do usuário. </p>
 
 <p>Também já atuei em um projeto de desenvolvimento de software para drones, onde adquiri conhecimento sobre integração entre hardware e software. Meu objetivo é evoluir como desenvolvedor e criar soluções modernas, eficientes e escaláveis.</p>
 
