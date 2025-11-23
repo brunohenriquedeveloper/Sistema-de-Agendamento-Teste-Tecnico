@@ -9,7 +9,7 @@
   <a href="#deploy">Deploy</a> •
   <a href="#demonstracao">Demonstração</a> •
   <a href="#extras">Extras</a> •
-  <a href="#sobre-mim">Sobre mim</a>
+  <a href="#sobre-mim">Autor</a>
 </p>
 
 <hr/>
