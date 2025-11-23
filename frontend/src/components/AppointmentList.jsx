@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchAppointments, deleteAppointment } from "../api/api";
 import AppointmentItem from "./AppointmentItem";
 import ConfirmModal from "./ui/ConfirmModal";
-import CreateAppointment from "./CreateAppointment"; 
-import Navbar from "./Navbar"; 
+import CreateAppointment from "./CreateAppointment";
 import styles from "./AppointmentList.module.css";
 
 export default function AppointmentList() {
@@ -64,37 +63,39 @@ export default function AppointmentList() {
   const handleCreatedOrCanceled = () => {
     setEditingAppointment(null);
     setCreating(false);
-    load(); 
+    load();
   };
 
-  if (loading)
+  if (loading) {
     return (
-      <p style={{ textAlign: "center", marginTop: "8em", fontSize: "1.5rem", fontWeight: "500" }}>
+      <p
+        style={{
+          textAlign: "center",
+          marginTop: "8em",
+          fontSize: "1.5rem",
+          fontWeight: "500",
+        }}
+      >
         Carregando agendamentos...
       </p>
     );
+  }
 
-  if (error) return <p style={{ color: "red" }}>{error}</p>;
+  if (error) {
+    return <p style={{ color: "red" }}>{error}</p>;
+  }
 
   const isEditingOrCreating = editingAppointment !== null || creating;
 
   return (
     <div className={styles.appointmentContainer}>
-      <Navbar
-        onCreate={() => {
-          setCreating(true);
-          setEditingAppointment(null);
-        }}
-        onList={() => {
-          setCreating(false);
-          setEditingAppointment(null);
-        }}
-      />
-
       {!isEditingOrCreating && list.length > 0 && (
         <div className={styles.header}>
           <h1>Lista de Agendamentos</h1>
-          <button className={styles.createButton} onClick={() => setCreating(true)}>
+          <button
+            className={styles.createButton}
+            onClick={() => setCreating(true)}
+          >
             Criar Agendamento
           </button>
         </div>
@@ -111,7 +112,9 @@ export default function AppointmentList() {
           <h1>Organize suas tarefas!</h1>
           <h2>Você ainda não tem nenhum agendamento</h2>
           <p>Crie seu primeiro agendamento agora!</p>
-          <button onClick={() => setCreating(true)}>Criar Seu Primeiro Agendamento</button>
+          <button onClick={() => setCreating(true)}>
+            Criar Seu Primeiro Agendamento
+          </button>
         </div>
       ) : (
         <div className={styles.appointmentList}>
