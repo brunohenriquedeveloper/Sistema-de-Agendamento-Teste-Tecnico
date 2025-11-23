@@ -50,7 +50,7 @@ export default function AppointmentList() {
     }
   };
 
-  const handleCancel = () => {
+  const handleCancelDelete = () => {
     setConfirmOpen(false);
     setSelectedId(null);
   };
@@ -60,22 +60,15 @@ export default function AppointmentList() {
     setCreating(false);
   };
 
-  const handleFormClose = (reload = false) => {
+  const handleCreatedOrCanceled = () => {
     setEditingAppointment(null);
     setCreating(false);
-    if (reload) load();
+    load(); 
   };
 
   if (loading)
     return (
-      <p
-        style={{
-          textAlign: "center",
-          marginTop: "8em",
-          fontSize: "1.5rem",
-          fontWeight: "500",
-        }}
-      >
+      <p style={{ textAlign: "center", marginTop: "8em", fontSize: "1.5rem", fontWeight: "500" }}>
         Carregando agendamentos...
       </p>
     );
@@ -89,10 +82,7 @@ export default function AppointmentList() {
       {!isEditingOrCreating && list.length > 0 && (
         <div className={styles.header}>
           <h1>Lista de Agendamentos</h1>
-          <button
-            className={styles.createButton}
-            onClick={() => setCreating(true)}
-          >
+          <button className={styles.createButton} onClick={() => setCreating(true)}>
             Criar Agendamento
           </button>
         </div>
@@ -101,17 +91,15 @@ export default function AppointmentList() {
       {isEditingOrCreating ? (
         <CreateAppointment
           existingAppointment={editingAppointment}
-          onCreated={() => handleFormClose(true)}  
-          onCancel={() => handleFormClose(false)}
+          onCreated={handleCreatedOrCanceled}
+          onCancel={handleCreatedOrCanceled}
         />
       ) : list.length === 0 ? (
         <div className={styles.createFirstAppointment}>
           <h1>Organize suas tarefas!</h1>
           <h2>Você ainda não tem nenhum agendamento</h2>
           <p>Crie seu primeiro agendamento agora!</p>
-          <button onClick={() => setCreating(true)}>
-            Criar Seu Primeiro Agendamento
-          </button>
+          <button onClick={() => setCreating(true)}>Criar Seu Primeiro Agendamento</button>
         </div>
       ) : (
         <div className={styles.appointmentList}>
@@ -133,7 +121,7 @@ export default function AppointmentList() {
 
       <ConfirmModal
         open={confirmOpen}
-        onClose={handleCancel}
+        onClose={handleCancelDelete}
         onConfirm={handleConfirm}
         message="Deseja realmente excluir este agendamento?"
       />
