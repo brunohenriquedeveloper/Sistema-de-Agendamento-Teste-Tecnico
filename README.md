@@ -142,7 +142,7 @@ A primeira requisição pode levar cerca de 20 segundos.</p>
 <table>
   <td>
     <h4><em>Página Inicial Desktop</em></h4>
-    <img width="800px" src="imgs/Desktop 3.png">
+    <img width="800px" src="imgs/Desktop3.png">
   </td>
 </table>
 
@@ -150,7 +150,7 @@ A primeira requisição pode levar cerca de 20 segundos.</p>
   <tr>
     <td>
       <h4><em>Página de Agendamentos</em></h4>
-      <img width="800px" src="imgs/Desktop 2.png">
+      <img width="800px" src="imgs/Desktop2.png">
     </td>
   </tr>
 </table>
@@ -159,7 +159,7 @@ A primeira requisição pode levar cerca de 20 segundos.</p>
   <tr>
     <td>
       <h4><em>Página de Criar Agendamentos</em></h4>
-      <img width="800px" src="imgs/Desktop 4.png">
+      <img width="800px" src="imgs/Desktop4.png">
     </td>
   </tr>
 </table>
