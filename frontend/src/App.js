@@ -20,7 +20,8 @@ function App() {
       <main style={{ padding: 24, width: "100%", margin: "0 auto", flex: 1 }}>
        {view === "list" 
   ? <AppointmentList onChangeView={setView} /> 
-  : <CreateAppointment onCreated={handleCreated} />
+  : <CreateAppointment onCreated={handleCreated}
+    onCancel={() => setView("list")}  />
 }
       </main>
       <Footer />
